@@ -7,12 +7,17 @@ import org.bukkit.event.block.SpongeAbsorbEvent;
 import me.banjer_hd.plugins.antispongeabsorbtion.Main;
 
 public class OnSpongeAbsorbtion implements Listener {
-	
+
+	private Main plugin;
+	public OnSpongeAbsorbtion(Main pl) {
+		plugin = pl;
+	}
+
 	@EventHandler
 	public void onEvent(SpongeAbsorbEvent e) {
-		if(Main.getInstance().getConfig().getList("enabled_worlds").contains("all") || Main.getInstance().getConfig().getList("enabled_worlds").contains(e.getBlock().getWorld().getName())) {
+		if(plugin.getConfig().getList("enabled_worlds").contains("all") || plugin.getConfig().getList("enabled_worlds").contains(e.getBlock().getWorld().getName())) {
 			e.setCancelled(true);
 		}
 	}
-	
+
 }
